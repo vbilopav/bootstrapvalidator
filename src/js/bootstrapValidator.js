@@ -1888,7 +1888,11 @@ if (typeof jQuery === 'undefined') {
             }
 
             for (var i in parameters) {
-                message = message.replace('%s', parameters[i]);
+                if (typeof message === "function") {
+                    message = message().replace('%s', parameters[i]);
+                } else {
+                    message = message.replace('%s', parameters[i]);
+                }
             }
 
             return message;
